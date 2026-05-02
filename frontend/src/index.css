@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-deep: #040914;
+  --bg-surface: #0A101D;
+  --primary: #00E5FF;
+  --primary-hover: #3B82F6;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --glow: rgba(0, 229, 255, 0.4);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 220 40% 3%;
+    --foreground: 210 40% 98%;
+    --card: 220 35% 5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 40% 3%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 187 100% 50%;
+    --primary-foreground: 220 40% 3%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 187 100% 50%;
+    --radius: 0.5rem;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+}
+
+/* Glass effect utility */
+.glass {
+  background: rgba(4, 9, 20, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Glow effect */
+.glow-border {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+.glow-border:hover {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@layer base {
+  [data-debug-wrapper="true"] {
+    display: contents !important;
+  }
+}

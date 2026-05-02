@@ -1,0 +1,91 @@
+{
+  "theme": "DARK",
+  "archetype": "5 (Jewel & Luxury) with a touch of 7 (Electric & Neon)",
+  "emotional_tone": "Futuristic, cinematic, bold, minimalist, high-end tech",
+  "typography": {
+    "headings": {
+      "font_family": "Outfit",
+      "weights": ["300", "500", "700"],
+      "styling": "tracking-tight, leading-none, bold, and geometric"
+    },
+    "body": {
+      "font_family": "IBM Plex Sans",
+      "weights": ["400", "500"],
+      "styling": "leading-relaxed, highly legible"
+    }
+  },
+  "colors": {
+    "background": "#040914",
+    "surface": "#0A101D",
+    "surface_glass": "rgba(4, 9, 20, 0.65)",
+    "primary": "#00E5FF",
+    "primary_hover": "#3B82F6",
+    "text_primary": "#F8FAFC",
+    "text_secondary": "#94A3B8",
+    "border": "rgba(255, 255, 255, 0.1)",
+    "accent_glow": "rgba(0, 229, 255, 0.4)"
+  },
+  "spacing_and_layout": {
+    "general": "Generous spacing. Use p-8 to p-16 for main sections. Margins and paddings should feel open and cinematic.",
+    "grid": "Bento Grid protocol for products. grid-cols-1 md:grid-cols-12 gap-8.",
+    "alignment": "Left-aligned typography for readability, centered for massive hero impact. Asymmetry in product layouts."
+  },
+  "surfaces": {
+    "header": "Crystal Glass: backdrop-blur-2xl bg-[#040914]/60 border-b border-white/10.",
+    "cards": "Neumorphic/Glass hybrid: Flat background #0A101D, 1px subtle border, glowing hover state (Tracing Beam effect with #00E5FF).",
+    "modals_cart": "Solid background #040914 with strong border-white/10 to avoid refraction of data."
+  },
+  "components": {
+    "buttons": "Sharp geometric edges or max rounded. Primary: bg-transparent border border-[#00E5FF] text-[#00E5FF] hover:bg-[#00E5FF] hover:text-[#040914] transition-all duration-300.",
+    "inputs": "Shadcn based, customized with bg-[#0A101D] border-white/10 focus:border-[#00E5FF].",
+    "cart": "Use a sliding sidebar (Sheet from Shadcn) with dark theme styling.",
+    "badges": "Small, uppercase, tracking-[0.2em], text-xs, border border-[#3B82F6] text-[#3B82F6] bg-blue-900/20"
+  },
+  "animations": {
+    "hero": "Scroll-triggered parallax, slow opacity fades, and scale-in for images.",
+    "interactions": "Hover state lifts (-translate-y-1) and adds box-shadow: 0 0 20px rgba(0,229,255,0.2).",
+    "scrolling": "Smooth momentum scrolling (Lenis if possible, otherwise CSS smooth scroll)."
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1741997852892-c66495f0d3c5",
+      "description": "Abstract blue geometric pattern for the cinematic hero background overlay"
+    },
+    "product_fidget_cone": {
+      "url": "https://images.unsplash.com/photo-1743438948521-3e7e1a59a3f5",
+      "description": "Fidget Cone desk toy"
+    },
+    "product_infinity_cube": {
+      "url": "https://images.unsplash.com/photo-1776235239377-ecba32a76dd4",
+      "description": "Infinity Cube metal puzzle"
+    },
+    "product_party_hat": {
+      "url": "https://images.unsplash.com/photo-1759124650162-6bc71d025621",
+      "description": "Metallic Party Hat"
+    },
+    "about_us_studio": {
+      "url": "https://images.unsplash.com/photo-1760446410542-04b48d60bfb3",
+      "description": "3D Printers in modern studio"
+    }
+  },
+  "pages": {
+    "home": "Cinematic Hero Landing. Full viewport height. Massive H1 (text-5xl to text-7xl fluid) in Outfit. Parallax scrolling to Products section.",
+    "products": "Grid layout. Cinematic cards showcasing the Fidget Cone ($5), Infinity Cube ($4), and Party Hats. Hover effects on cards.",
+    "order_cart": "Stripe/PayPal checkout flow elements. Clear hierarchy, high contrast text for pricing and totals.",
+    "about": "Rich text and imagery of the studio. Organic flow.",
+    "contact": "Minimalist contact form. Input fields with bottom borders only, or subtle full borders."
+  },
+  "accessibility": {
+    "contrast": "Ensure text against dark backgrounds meets APCA standards. Use #F8FAFC for body.",
+    "testing": "All interactive elements MUST have data-testid attributes (e.g., data-testid='add-to-cart-button')."
+  },
+  "instructions_to_main_agent": [
+    "Use standard React + Tailwind + Shadcn UI setup.",
+    "Apply Outfit for all headers, IBM Plex Sans for body.",
+    "Do NOT use Inter or standard fonts for headings.",
+    "Implement a dark theme globally.",
+    "Use Framer Motion for scroll animations in the Hero section.",
+    "Build an E-Commerce cart flow (can mock actual Stripe/PayPal if API keys not provided, but UI must reflect it).",
+    "Never use placeholder images, strictly use the media URLs provided."
+  ]
+}
