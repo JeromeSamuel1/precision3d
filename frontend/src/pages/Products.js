@@ -1,37 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
-import axios from 'axios';
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Fidget Cone',
+    description: 'A satisfying spiral-textured cone designed for tactile stimulation. Precision-printed with smooth layer adhesion and available in multiple colors.',
+    price: 5.00,
+    material: 'PLA',
+    image: 'https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=800&q=80',
+    colors: ['White', 'Black', 'Green', 'Red', 'Blue'],
+  },
+  {
+    id: 2,
+    name: 'Infinity Cube',
+    description: 'A compact, foldable fidget cube with satisfying articulation. Engineered for smooth movement and everyday durability.',
+    price: 4.00,
+    material: 'PLA',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    colors: ['White', 'Black', 'Green', 'Orange', 'Purple'],
+  },
+];
 
 export default function Products() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { addItem } = useCart();
+  const [added, setAdded] = useState({});
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const res = await axios.get(`${API}/products`);
-        setProducts(res.data);
-      } catch (e) {
-        console.error('Failed to fetch products', e);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen pt-24 flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[#00E5FF] border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
+  const handleAdd = (product) => {
+    addItem(product);
+    setAdded(prev => ({ ...prev, [product.id]: true }));
+    setTimeout(() => setAdded(prev => ({ ...prev, [product.id]: false })), 1500);
+  };
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-6" data-testid="products-page">
@@ -53,12 +54,9 @@ export default function Products() {
           </p>
         </motion.div>
 
-        {/* Product Grid - Bento Layout */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {products.map((product, i) => {
-            // Bento layout: first item spans more
-            const span = i === 0 ? 'md:col-span-7' : i === 1 ? 'md:col-span-5' : 'md:col-span-4';
-            
+          {PRODUCTS.map((product, i) => {
+            const span = i === 0 ? 'md:col-span-7' : 'md:col-span-5';
             return (
               <motion.div
                 key={product.id}
@@ -76,8 +74,6 @@ export default function Products() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A101D] via-transparent to-transparent"></div>
-                  
-                  {/* Material Badge */}
                   <span className="absolute top-4 left-4 text-[10px] tracking-[0.2em] uppercase border border-[#3B82F6] text-[#3B82F6] bg-blue-900/20 px-2 py-0.5">
                     {product.material}
                   </span>
@@ -91,8 +87,7 @@ export default function Products() {
                   <p className="text-[#94A3B8] text-sm leading-relaxed mb-4 line-clamp-2">
                     {product.description}
                   </p>
-                  
-                  {/* Colors */}
+
                   <div className="flex flex-wrap gap-1 mb-4">
                     {product.colors.map(color => (
                       <span key={color} className="text-[10px] text-[#94A3B8] border border-white/10 px-2 py-0.5 rounded-sm">
@@ -101,18 +96,17 @@ export default function Products() {
                     ))}
                   </div>
 
-                  {/* Price + Add */}
                   <div className="flex items-center justify-between">
                     <span className="font-['Outfit'] font-bold text-2xl text-[#00E5FF]">
                       ${product.price.toFixed(2)}
                     </span>
                     <button
-                      onClick={() => addItem(product)}
+                      onClick={() => handleAdd(product)}
                       className="flex items-center gap-2 px-4 py-2 border border-[#00E5FF] text-[#00E5FF] text-sm font-medium hover:bg-[#00E5FF] hover:text-[#040914] transition-all duration-300"
                       data-testid={`add-to-cart-${product.id}`}
                     >
                       <Plus size={14} />
-                      Add to Cart
+                      {added[product.id] ? 'Added!' : 'Add to Cart'}
                     </button>
                   </div>
                 </div>
