@@ -10,7 +10,7 @@ const PRODUCTS = [
     description: 'A satisfying spiral-textured cone designed for tactile stimulation. Precision-printed with smooth layer adhesion and available in multiple colors.',
     price: 5.00,
     material: 'PLA',
-    image: './img/fidgetcone.png',
+    image: '/../img/fidgetcone.png',
     colors: ['White', 'Black', 'Green', 'Red', 'Blue'],
   },
   {
